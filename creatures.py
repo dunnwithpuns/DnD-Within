@@ -17,6 +17,7 @@ class Monster:
     def __init__(self, name):
         self.name = name
         self.challenge_rating = self.get_challenge_rating()
+        self.xp = self.get_xp()
 
     def get_challenge_rating(self):
         return all_monster_challenge_rating[self.name]
@@ -25,4 +26,10 @@ class Monster:
         return cr_to_xp_series[self.challenge_rating]
 
 
+class Player:
+    def __init__(self, name, level):
+        self.name = name
+        self.level = level
 
+    def get_xp_threshold(self):
+        pass
