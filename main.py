@@ -1,5 +1,10 @@
+from creatures import Monster
+
+
 def main():
-    pass    
+    b1 = Monster('bandit')
+
+    print(b1.cr)
 
 
 

@@ -1,20 +1,28 @@
 import numpy as np
 import pandas as pd
 
-user_input = ["dretch", "bandit"]
+# file paths
+dnd_monsters_path = "tables/dnd_monsters.csv"
+cr_xp_table_path = "tables/cr_xp_table.csv"
 
-all_monsters = pd.read_csv('dnd_monsters.csv')
 
+all_monsters = pd.read_csv(dnd_monsters_path)
 all_monster_challenge_rating = pd.Series(all_monsters['cr'].values, index=all_monsters['name'].values, name='challenge rating')
 
-xp_table = pd.read_csv('cr_xp_table.csv') 
+cr_to_xp_table = pd.read_csv(cr_xp_table_path)
+cr_to_xp_series = pd.Series(cr_to_xp_table['xp'].values, index=cr_to_xp_table['cr'].values, name='Challenge Rating x XP')
 
-def fraction_string_to_float(string):
-    divisors = string.split('/')
-    return float(divisors[0]) / float(divisors[1])
 
-def fraction_float_to_string(float_value):
-    pass
+class Monster:
+    def __init__(self, name):
+        self.name = name
+        self.challenge_rating = self.get_challenge_rating()
 
-converted_input_monster_challenge_rating = [fraction_string_to_float(cr) for cr in all_monster_challenge_rating[user_input].values] 
+    def get_challenge_rating(self):
+        return all_monster_challenge_rating[self.name]
+
+    def get_xp(self):
+        return cr_to_xp_series[self.challenge_rating]
+
+
 
