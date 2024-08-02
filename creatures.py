@@ -7,13 +7,14 @@ all_monsters = pd.read_csv('dnd_monsters.csv')
 
 all_monster_challenge_rating = pd.Series(all_monsters['cr'].values, index=all_monsters['name'].values, name='challenge rating')
 
-def convert_fraction_string_to_float(string):
+xp_table = pd.read_csv('cr_xp_table.csv') 
+
+def fraction_string_to_float(string):
     divisors = string.split('/')
     return float(divisors[0]) / float(divisors[1])
 
+def fraction_float_to_string(float_value):
+    pass
 
-input_monster_cr = all_monster_challenge_rating[user_input].values
+converted_input_monster_challenge_rating = [fraction_string_to_float(cr) for cr in all_monster_challenge_rating[user_input].values] 
 
-user_monster_challenge_rating = [convert_fraction_string_to_float(n) for n in input_monster_cr]
-
-print(user_monster_challenge_rating)
