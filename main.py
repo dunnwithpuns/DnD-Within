@@ -1,11 +1,17 @@
-from creatures import Monster
+from creatures import Monster, Player
+from encounter import Encounter
 
 
 def main():
-    b1 = Monster('bandit')
+    monsters = [Monster('bandit'), Monster('harpy')]
 
-    print(b1.cr)
+    players = [Player('Jack', 2), Player('Bob', 1)]
 
+    encounter = Encounter(monsters, players)
+
+    kaladin = Player('Kaladin', 1)
+
+    print(encounter.total_xp_threshold)
 
 
 if __name__ == "__main__":

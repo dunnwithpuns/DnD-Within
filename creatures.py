@@ -14,14 +14,7 @@ cr_to_xp_series = pd.Series(cr_to_xp_table['xp'].values, index=cr_to_xp_table['c
 
 xp_threshold_by_level = pd.read_csv(xp_threshold_by_level_path).T
 
-level = 2
-difficulty = 'Medium'
 
-xp_threshold = pd.Series(xp_threshold_by_level[level - 1], name=f'Level {level} xp threshold')
-
-
-
-print(xp_threshold[difficulty])
 
 
 
@@ -30,7 +23,6 @@ class Monster:
         self.name = name
         self.challenge_rating = self.get_challenge_rating()
         self.xp = self.get_xp()
-        self.easy_xp_threshold = self.get_xp_threshold('Easy')  
 
     def get_challenge_rating(self):
         return all_monster_challenge_rating[self.name]
@@ -43,9 +35,15 @@ class Player:
     def __init__(self, name, level):
         self.name = name
         self.level = level
+        self.xp_threshold= self.get_xp_threshold()  
 
-    def get_xp_threshold(self, difficulty):
-        xp_threshold = pd.Series(xp_threshold_by_level[level - 1], name=f'Level {level} xp threshold')
+    def get_xp_threshold(self, difficulty=None):
+        xp_threshold = pd.Series(xp_threshold_by_level[self.level - 1], name=f'Level {self.level} xp threshold')
+        xp_threshold = xp_threshold[1:]
+        xp_threshold = pd.to_numeric(xp_threshold, errors='coerce')
+
+        if not difficulty:
+            return xp_threshold
         return xp_threshold[difficulty]
         
 
