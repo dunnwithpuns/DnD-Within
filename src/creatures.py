@@ -2,9 +2,9 @@ import numpy as np
 import pandas as pd
 
 # file paths
-dnd_monsters_path = "../ref/dnd_monsters.csv"
-cr_xp_table_path = "../ref/cr_xp_table.csv"
-xp_threshold_by_level_path = "../ref/xp_threshold_by_level.csv"
+dnd_monsters_path = "./ref/dnd_monsters.csv"
+cr_xp_table_path = "./ref/cr_xp_table.csv"
+xp_threshold_by_level_path = "./ref/xp_threshold_by_level.csv"
 
 all_monsters = pd.read_csv(dnd_monsters_path)
 all_monster_challenge_rating = pd.Series(all_monsters['cr'].values, index=all_monsters['name'].values, name='challenge rating')
