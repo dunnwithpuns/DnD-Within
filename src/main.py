@@ -9,9 +9,11 @@ def main():
 
     encounter = Encounter(monsters, players)
 
+    # easy_xp = encounter.total_xp_threshold['Easy']
 
     print(f'Chracater XP Thresholds: \n{encounter.total_xp_threshold}')
-    print(f'Adjusted combat XP: {encounter.total_xp}')
+    print(f'Encounter difficulty: {encounter.difficulty}')
+    print(f'Adjusted combat XP: {encounter.total_monster_xp}')
 
 
 if __name__ == "__main__":
