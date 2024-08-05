@@ -24,10 +24,10 @@ def main():
             monsters.append(Monster(name))
 
     encounter = Encounter(monsters, players)
-
-    print(f'Chracater XP Thresholds: \n{encounter.total_xp_threshold}')
-    print(f'Encounter difficulty: {encounter.difficulty}')
-    print(f'Adjusted combat XP: {encounter.total_monster_xp}')
+    #
+    # print(f'Chracater XP Thresholds: \n{encounter.total_xp_threshold}')
+    # print(f'Encounter difficulty: {encounter.difficulty}')
+    # print(f'Adjusted combat XP: {encounter.total_monster_xp}')
 
     subprocess.run(
         f"python3 {cli_template} create-directory", shell=True
