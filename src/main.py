@@ -1,5 +1,7 @@
 from creatures import Monster, Player
 from encounter import Encounter
+import cli_template
+import subprocess
 
 
 def main():
@@ -26,6 +28,10 @@ def main():
     print(f'Chracater XP Thresholds: \n{encounter.total_xp_threshold}')
     print(f'Encounter difficulty: {encounter.difficulty}')
     print(f'Adjusted combat XP: {encounter.total_monster_xp}')
+
+    subprocess.run(
+        f"python3 {cli_template} create-directory", shell=True
+    )
 
 
 if __name__ == "__main__":
