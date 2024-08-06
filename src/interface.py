@@ -1,10 +1,9 @@
 # import typer
 # import subprocess
-from rich import print
 from rich.prompt import Prompt
-# from PyInquirer import prompt
 from terminaltexteffects.effects.effect_burn import Burn
 from terminaltexteffects.effects.effect_print import Print
+from terminaltexteffects.effects.effect_wipe import Wipe
 from terminaltexteffects.utils.graphics import Color
 import pyfiglet
 from creatures import Monster, Player
@@ -14,8 +13,9 @@ from encounter import Encounter
 def welcome():
 
     print_big("DnD Within", burn_animation)
-    print('''[green bold]Let's create an encounter!''')
-    print('[yellow]=================================================[yellow]')
+    wipe_animation('====================================================')
+    green_print_animation('''Let's create your encounter!''')
+    wipe_animation('====================================================')
     encounter = create_encounter()
     party_info(encounter)
 
@@ -32,6 +32,8 @@ def create_encounter():
         level = int(Prompt.ask("[blue bold]>[blue bold]"))
         player_list.append(Player(name, level))
 
+    wipe_animation('====================================================')
+
     red_print_animation("How many monsters are in this encounter?")
     monsters = int(Prompt.ask("[red bold]>[red bold]"))
     monster_list = []
@@ -40,6 +42,8 @@ def create_encounter():
             "What monster would you like to add to the encounter?")
         name = Prompt.ask("[red bold]>[red bold]")
         monster_list.append(Monster(name))
+
+    wipe_animation('====================================================')
 
     return Encounter(monster_list, player_list)
 
@@ -87,6 +91,13 @@ def red_print_animation(text):
 def green_print_animation(text):
     effect = Print(text)
     effect.effect_config.final_gradient_stops = (Color("00ff00"))
+    with effect.terminal_output() as terminal:
+        for frame in effect:
+            terminal.print(frame)
+
+
+def wipe_animation(text):
+    effect = Wipe(text)
     with effect.terminal_output() as terminal:
         for frame in effect:
             terminal.print(frame)
