@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import random
 
 
 class Encounter:
@@ -53,3 +54,18 @@ class Encounter:
             return "Hard"
         else:
             return "Deadly"
+
+    def roll(die):
+        sides = int(die[1:])
+        if (
+            sides == 4 or
+            sides == 6 or
+            sides == 8 or
+            sides == 10 or
+            sides == 12 or
+            sides == 20 or
+            sides == 100
+        ):
+            return random.randint(sides)
+        else:
+            raise Exception("invalid die input")

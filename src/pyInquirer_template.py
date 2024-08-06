@@ -6,8 +6,8 @@ from rich import print
 app = typer.Typer()
 
 
-@app.command("create-directory")
-def sample_func():
+@app.command()
+def create_directory():
     module_list_question = [
         {
             'type': 'list',

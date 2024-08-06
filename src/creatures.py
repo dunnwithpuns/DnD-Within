@@ -1,9 +1,9 @@
 import pandas as pd
 
 # file paths
-dnd_monsters_path = "./ref/dnd_monsters.csv"
-cr_xp_table_path = "./ref/cr_xp_table.csv"
-xp_threshold_by_level_path = "./.ref/xp_threshold_by_level.csv"
+dnd_monsters_path = "../ref/dnd_monsters.csv"
+cr_xp_table_path = "../ref/cr_xp_table.csv"
+xp_threshold_by_level_path = "../ref/xp_threshold_by_level.csv"
 
 all_monsters = pd.read_csv(dnd_monsters_path)
 all_monster_challenge_rating = pd.Series(
@@ -24,7 +24,7 @@ xp_threshold_by_level = pd.read_csv(xp_threshold_by_level_path).T
 
 class Monster:
     def __init__(self, name):
-        self.name = name
+        self.name = name.lower()
         self.challenge_rating = self.get_challenge_rating()
         self.xp = self.get_xp()
 
