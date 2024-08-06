@@ -17,7 +17,7 @@ def welcome():
     print('''[green bold]Let's create an encounter!''')
     print('[yellow]=================================================[yellow]')
     encounter = create_encounter()
-    print(encounter.difficulty)
+    party_info(encounter)
 
 
 def create_encounter():
@@ -44,8 +44,9 @@ def create_encounter():
     return Encounter(monster_list, player_list)
 
 
-def party_info():
-    pass
+def party_info(encounter):
+    green_print_animation("The encounter difficulty is . . .")
+    print_big(encounter.difficulty, burn_animation)
 
 
 def print_big(text, animation):
@@ -77,8 +78,15 @@ def print_animation(text):
 
 def red_print_animation(text):
     effect = Print(text)
-    effect.effect_config.final_gradient_stops = (
-        Color("ff0000"))
+    effect.effect_config.final_gradient_stops = (Color("ff0000"))
+    with effect.terminal_output() as terminal:
+        for frame in effect:
+            terminal.print(frame)
+
+
+def green_print_animation(text):
+    effect = Print(text)
+    effect.effect_config.final_gradient_stops = (Color("00ff00"))
     with effect.terminal_output() as terminal:
         for frame in effect:
             terminal.print(frame)
