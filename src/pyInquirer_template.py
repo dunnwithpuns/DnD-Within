@@ -7,37 +7,22 @@ app = typer.Typer()
 
 
 @app.command()
-def create_directory():
+def creature_question():
     module_list_question = [
         {
             'type': 'list',
-            'name': 'username',
-            'message': 'Select any one username',
-            'choices': [
-                    {
-                        'name': 'Eddie',
-                    },
-                {
-                        'name': 'Hughie',
-                    },
-                {
-                        'name': 'Matthew',
-                    },
-                {
-                        'name': 'Harvey',
-                    },
-            ],
+            'name': 'creature',
+            'message': 'Players or Monsters?',
+            'choices': [{'name': 'Players', }, {'name': 'Monsters', }, ],
         }
     ]
 
-    username = prompt(module_list_question)
+    creature_choice = prompt(module_list_question)
     print("[yellow]=============================================[yellow]")
-    print("[green bold]Enter folder name :[green bold]")
-    folder_name = input()
-
-    subprocess.run(
-        f"mkdir {folder_name}_created_by_{username['username']}", shell=True
-    )
+    # if creature_choice == 'Players':
+    #     player_question()
+    # if creature_choice == 'Monsters':
+    #     # monster_question()
 
 
 if __name__ == "__main__":
