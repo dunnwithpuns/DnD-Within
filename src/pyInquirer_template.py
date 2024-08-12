@@ -1,5 +1,5 @@
 import typer
-import subprocess
+# import subprocess
 from PyInquirer import prompt
 from rich import print
 
@@ -19,9 +19,11 @@ def creature_question():
 
     creature_choice = prompt(module_list_question)
     print("[yellow]=============================================[yellow]")
-    # if creature_choice == 'Players':
+    if creature_choice == 'Players':
+        pass
     #     player_question()
-    # if creature_choice == 'Monsters':
+    if creature_choice == 'Monsters':
+        pass
     #     # monster_question()
 
 

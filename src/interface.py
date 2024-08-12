@@ -6,6 +6,7 @@ from terminaltexteffects.effects.effect_print import Print
 from terminaltexteffects.effects.effect_wipe import Wipe
 from terminaltexteffects.utils.graphics import Color
 import pyfiglet
+from PyInquirer import prompt
 from creatures import Monster, Player
 from encounter import Encounter
 
@@ -17,7 +18,27 @@ def welcome():
     green_print_animation('''Let's create your encounter!''')
     wipe_animation('====================================================')
     encounter = create_encounter()
-    party_info(encounter)
+    get_difficulty(encounter)
+
+
+def creature_question():
+    module_list_question = [
+        {
+            'type': 'list',
+            'name': 'creature',
+            'message': 'Players or Monsters?',
+            'choices': [{'name': 'Players', }, {'name': 'Monsters', }, ],
+        }
+    ]
+
+    creature_choice = prompt(module_list_question)
+    print("[yellow]=============================================[yellow]")
+    if creature_choice == 'Players':
+        pass
+    #     player_question()
+    if creature_choice == 'Monsters':
+        pass
+    #     # monster_question()
 
 
 def create_encounter():
@@ -48,7 +69,7 @@ def create_encounter():
     return Encounter(monster_list, player_list)
 
 
-def party_info(encounter):
+def get_difficulty(encounter):
     green_print_animation("The encounter difficulty is . . .")
     print_big(encounter.difficulty, burn_animation)
 
