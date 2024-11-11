@@ -1,5 +1,5 @@
 # DnD Within
-Welcome to my first ever ture coding project!
+Welcome to my first ever solo coding project!
 
 Have you ever thought, how could I make DMing a game of Dungeons and Dragons even more nerdy?
 
